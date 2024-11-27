@@ -6,7 +6,7 @@
       </div>
       <div class="p-7">
         <h2 class="text-4x1 my-7">{{ product.title }}</h2>
-        <P class="text-xl my-7">Price -£{{ product.price }}</P>
+        <P class="text-xl my-7">Price £{{ product.price }}</P>
         <h3 class="font-bold border-b-2 mb-4 pb-2">Product description:</h3>
         <p class="mb-7">{{ product.description }}</p>
       </div>
