@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   // Other configurations...
   routeRules: {
-    "/admin/**": { ssr: false }, // Disable server-side rendering for admin pages
+    "/admin/**": { ssr: true }, // Disable server-side rendering for admin pages
   },
 
   modules: ["@nuxtjs/tailwindcss"],
