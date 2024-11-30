@@ -68,11 +68,11 @@
             About
           </NuxtLink>
           <NuxtLink
-            to="/admin/login"
+            to="/products"
             @click="toggleMobileMenu"
             class="text-gray-800 hover:text-blue-600"
           >
-            admin/login
+            Products
           </NuxtLink>
           <NuxtLink
             to="/contact"
