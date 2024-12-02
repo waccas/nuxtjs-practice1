@@ -83,17 +83,6 @@
         <p>Description / Price of the third product goes here.</p>
       </div>
     </section>
-
-    <!-- Call to Action Section -->
-    <section class="bg-blue-500 text-white py-16 text-center">
-      <h2 class="text-3xl font-bold mb-4">Ready to Get Started?</h2>
-      <p class="text-xl mb-8">Join thousands of satisfied customers today!</p>
-      <button
-        class="bg-white text-blue-500 px-10 py-4 rounded-lg hover:bg-gray-100"
-      >
-        Sign Up Now
-      </button>
-    </section>
   </div>
 </template>
 
