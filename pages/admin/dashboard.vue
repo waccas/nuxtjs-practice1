@@ -36,15 +36,25 @@
               </td>
               <td class="p-3">
                 <button
-                  @click="deleteMessage(key)"
-                  class="text-red-500 hover:text-red-700"
+                  @click="confirmDelete(message.id)"
+                  class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
                 >
                   Delete
                 </button>
+                <p v-if="deleteError" class="text-red-500 text-sm mt-2">
+                  {{ deleteError }}
+                </p>
               </td>
             </tr>
           </tbody>
         </table>
+
+        <!-- Add confirmation modal -->
+        <ConfirmationModal
+          :show="showConfirmation"
+          @confirm="handleConfirmDelete"
+          @cancel="handleCancelDelete"
+        />
 
         <div v-if="messages.length === 0" class="p-4 text-center text-gray-500">
           No messages found
@@ -58,6 +68,26 @@
 import { ref as dbRef, onValue, remove } from "firebase/database";
 import { signOut } from "firebase/auth";
 import { useRouter } from "vue-router";
+import ConfirmationModal from "~/components/ConfirmationModal.vue";
+
+const showConfirmation = ref(false);
+const messageToDelete = ref(null);
+
+const confirmDelete = (messageId) => {
+  messageToDelete.value = messageId;
+  showConfirmation.value = true;
+};
+
+const handleConfirmDelete = async () => {
+  await deleteMessage(messageToDelete.value);
+  showConfirmation.value = false;
+  messageToDelete.value = null;
+};
+
+const handleCancelDelete = () => {
+  showConfirmation.value = false;
+  messageToDelete.value = null;
+};
 
 const messages = ref([]);
 const router = useRouter();
