@@ -1,6 +1,7 @@
 <template>
   <div class="min-h-screen bg-gray-100 p-4">
     <div class="container mx-auto">
+      <!-- Header with logout -->
       <div class="flex justify-between items-center mb-6">
         <h1 class="text-2xl font-bold">Admin Dashboard</h1>
         <button
@@ -11,7 +12,35 @@
         </button>
       </div>
 
-      <div class="bg-white shadow-md rounded-lg overflow-x-auto">
+      <!-- Tab buttons -->
+      <div class="flex space-x-4 mb-4">
+        <button
+          @click="activeTab = 'messages'"
+          :class="[
+            'px-4 py-2 rounded',
+            activeTab === 'messages' ? 'bg-blue-500 text-white' : 'bg-gray-200',
+          ]"
+        >
+          Messages
+        </button>
+        <button
+          @click="activeTab = 'subscribers'"
+          :class="[
+            'px-4 py-2 rounded',
+            activeTab === 'subscribers'
+              ? 'bg-blue-500 text-white'
+              : 'bg-gray-200',
+          ]"
+        >
+          Subscribers
+        </button>
+      </div>
+
+      <!-- Messages Tab -->
+      <div
+        v-if="activeTab === 'messages'"
+        class="bg-white shadow-md rounded-lg overflow-x-auto"
+      >
         <table class="w-full">
           <thead class="bg-gray-200">
             <tr>
@@ -49,27 +78,38 @@
           </tbody>
         </table>
 
-        <!-- Add confirmation modal -->
+        <!-- No messages message -->
+        <div v-if="messages.length === 0" class="p-4 text-center text-gray-500">
+          No messages found
+        </div>
+
+        <!-- Confirmation Modal -->
         <ConfirmationModal
           :show="showConfirmation"
           @confirm="handleConfirmDelete"
           @cancel="handleCancelDelete"
         />
+      </div>
 
-        <div v-if="messages.length === 0" class="p-4 text-center text-gray-500">
-          No messages found
-        </div>
+      <!-- Subscribers Tab -->
+      <div v-if="activeTab === 'subscribers'">
+        <SubscribersList />
       </div>
     </div>
   </div>
 </template>
+
+<!-- Script section remains unchanged -->
 
 <script setup>
 import { ref as dbRef, onValue, remove } from "firebase/database";
 import { signOut } from "firebase/auth";
 import { useRouter } from "vue-router";
 import ConfirmationModal from "~/components/ConfirmationModal.vue";
+import { ref } from "vue";
+import SubscribersList from "~/components/SubscribersList.vue";
 
+const activeTab = ref("messages");
 const showConfirmation = ref(false);
 const messageToDelete = ref(null);
 
