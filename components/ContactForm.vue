@@ -115,18 +115,66 @@ const isFormValid = computed(() => {
 
 const validateField = (field) => {
   if (field === "name") {
-    errors.name = formData.name ? "" : "Name is required";
-  } else if (field === "email") {
-    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-    if (!formData.email) {
-      errors.email = "Email is required";
-    } else if (!emailRegex.test(formData.email)) {
-      errors.email = "Please enter a valid email address";
+    const nameValue = formData.name.trim();
+    const nameRegex = /^[a-zA-Z\s]{2,30}$/;
+
+    if (!nameValue) {
+      errors.name = "Name is required";
+    } else if (!nameRegex.test(nameValue)) {
+      errors.name = "Name must be 2-30 characters and contain only letters";
     } else {
-      errors.email = "";
+      errors.name = "";
+    }
+  } else if (field === "email") {
+    const emailValue = formData.email.trim();
+    // Updated regex for stricter email validation
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    // Additional checks for common invalid patterns
+    const invalidPatterns = [
+      /@.*@/, // Multiple @ symbols
+      /\s/, // Any whitespace
+      /^[.-]/, // Starting with dot or dash
+      /[.-]@/, // Dot or dash before @
+      /@[.-]/, // Dot or dash after @
+      /\.{2,}/, // Consecutive dots
+    ];
+
+    if (!emailValue) {
+      errors.email = "Email is required";
+    } else if (emailValue.length > 254) {
+      errors.email = "Email must be less than 254 characters";
+    } else if (emailValue.length < 5) {
+      errors.email = "Email is too short";
+    } else if (!emailRegex.test(emailValue)) {
+      errors.email = "Please enter a valid email address";
+    } else if (invalidPatterns.some((pattern) => pattern.test(emailValue))) {
+      errors.email = "Please enter a valid email address";
+    } else if (emailValue.split("@")[0].length < 2) {
+      errors.email = "Username part must be at least 2 characters";
+    } else {
+      const domainParts = emailValue.split("@")[1].split(".");
+      const domainName = domainParts[0];
+      const tld = domainParts[1];
+
+      if (domainName.length < 2) {
+        errors.email = "Domain name must be at least 2 characters";
+      } else if (tld.length < 2) {
+        errors.email = "Top-level domain must be at least 2 characters";
+      } else {
+        errors.email = "";
+      }
     }
   } else if (field === "message") {
-    errors.message = formData.message ? "" : "Message is required";
+    const messageValue = formData.message.trim();
+
+    if (!messageValue) {
+      errors.message = "Message is required";
+    } else if (messageValue.length < 10) {
+      errors.message = "Message must be at least 10 characters";
+    } else {
+      errors.message = "";
+    }
   }
 };
 
