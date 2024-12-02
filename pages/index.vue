@@ -47,8 +47,8 @@
             />
           </svg>
         </div>
-        <h3 class="text-xl font-bold mb-2">Feature One</h3>
-        <p>Description of the first feature goes here.</p>
+        <h3 class="text-xl font-bold mb-2">Product One</h3>
+        <p>Description / Price of the first product goes here.</p>
       </div>
 
       <div class="text-center">
@@ -63,8 +63,8 @@
             />
           </svg>
         </div>
-        <h3 class="text-xl font-bold mb-2">Feature Two</h3>
-        <p>Description of the second feature goes here.</p>
+        <h3 class="text-xl font-bold mb-2">Product Two</h3>
+        <p>Description / price of the second product goes here.</p>
       </div>
 
       <div class="text-center">
@@ -79,8 +79,8 @@
             />
           </svg>
         </div>
-        <h3 class="text-xl font-bold mb-2">Feature Three</h3>
-        <p>Description of the third feature goes here.</p>
+        <h3 class="text-xl font-bold mb-2">Product # Three</h3>
+        <p>Description / Price of the third product goes here.</p>
       </div>
     </section>
 
