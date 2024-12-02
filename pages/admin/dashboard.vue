@@ -145,4 +145,7 @@ const logout = async () => {
     console.error("Logout error:", error);
   }
 };
+definePageMeta({
+  middleware: ["auth"],
+});
 </script>

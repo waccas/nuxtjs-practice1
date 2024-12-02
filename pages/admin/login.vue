@@ -78,4 +78,8 @@ const login = async () => {
     isLoading.value = false;
   }
 };
+
+definePageMeta({
+  middleware: ["auth"],
+});
 </script>

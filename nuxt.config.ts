@@ -2,9 +2,10 @@
 export default defineNuxtConfig({
   // Other configurations...
   routeRules: {
-    "/admin/**": { ssr: true }, // Disable server-side rendering for admin pages
+    "/admin/**": { ssr: false }, // Disable server-side rendering for admin pages
   },
 
+  // Required modules
   modules: ["@nuxtjs/tailwindcss"],
 
   // Add Firebase configuration directly
@@ -16,6 +17,12 @@ export default defineNuxtConfig({
       firebaseDatabaseURL: process.env.FIREBASE_DATABASE_URL,
     },
   },
+  build: {
+    transpile: ["firebase"],
+  },
 
+  devtools: { enabled: true },
+
+  // Remove middleware array and let Nuxt auto-load from middleware directory
   compatibilityDate: "2024-11-29",
 });

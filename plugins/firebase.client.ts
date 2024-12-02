@@ -1,8 +1,12 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
-import { getAuth } from "firebase/auth";
+import {
+  getAuth,
+  setPersistence,
+  browserLocalPersistence,
+} from "firebase/auth";
 
-export default defineNuxtPlugin((nuxtApp) => {
+export default defineNuxtPlugin(async () => {
   const config = useRuntimeConfig();
 
   const firebaseConfig = {
@@ -19,6 +23,8 @@ export default defineNuxtPlugin((nuxtApp) => {
   const database = getDatabase(app);
   const auth = getAuth(app);
 
+  // Enable persistent auth state
+  await setPersistence(auth, browserLocalPersistence);
   // Provide to the app
   return {
     provide: {
