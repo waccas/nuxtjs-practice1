@@ -12,12 +12,12 @@
               <div>
                 <h1 class="text-4xl font-bold mb-4">Welcome to Our Website</h1>
                 <p class="text-xl mb-6">
-                  Discover amazing features and services
+                  Discover our products at amazing prices!
                 </p>
                 <button
                   class="bg-blue-500 text-white px-8 py-3 rounded-lg hover:bg-blue-600"
                 >
-                  Learn More
+                  <NuxtLink to="/products">Shop Now</NuxtLink>
                 </button>
               </div>
             </div>
