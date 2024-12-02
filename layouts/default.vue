@@ -90,28 +90,13 @@
       <slot />
     </main>
 
-    <!-- Pre-Footer Newsletter Section -->
-    <section class="bg-gray-100 py-12">
-      <div class="container mx-auto px-4 text-center">
-        <h2 class="text-2xl font-bold mb-4">Subscribe to Our Newsletter</h2>
-        <p class="text-gray-600 mb-6">
-          Stay updated with our latest news and offers
-        </p>
+    <!-- Your existing header and content -->
 
-        <div class="max-w-md mx-auto flex">
-          <input
-            type="email"
-            placeholder="Enter your email"
-            class="w-full px-4 py-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-          <button
-            class="bg-blue-500 text-white px-6 py-2 rounded-r-lg hover:bg-blue-600"
-          >
-            Subscribe
-          </button>
-        </div>
-      </div>
-    </section>
+    <NewsletterForm />
+
+    <footer>
+      <!-- ... footer content ... -->
+    </footer>
 
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-12">
@@ -167,8 +152,10 @@
 </template>
 
 <script setup>
-const mobileMenuOpen = ref(false);
+import { ref } from "vue";
+import NewsletterForm from "~/components/NewsletterForm.vue";
 
+const mobileMenuOpen = ref(false);
 const toggleMobileMenu = () => {
   mobileMenuOpen.value = !mobileMenuOpen.value;
 };
