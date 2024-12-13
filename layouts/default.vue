@@ -26,6 +26,9 @@
           <NuxtLink to="/contact" class="text-gray-800 hover:text-blue-600"
             >Contact</NuxtLink
           >
+          <NuxtLink to="/blog/" class="text-gray-800 hover:text-blue-600"
+            >Our Blog</NuxtLink
+          >
         </nav>
 
         <!-- Mobile Menu Toggle -->
@@ -120,6 +123,11 @@
             <li>
               <NuxtLink to="/admin/login" class="hover:text-blue-400"
                 >Admin Login</NuxtLink
+              >
+            </li>
+            <li>
+              <NuxtLink to="/blog/" class="hover:text-blue-400"
+                >Our blog</NuxtLink
               >
             </li>
           </ul>

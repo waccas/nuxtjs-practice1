@@ -7,6 +7,7 @@ module.exports = {
     "./plugins/**/*.{js,ts}",
     "./app.vue",
     "./error.vue",
+    "storyblok/**/*.{vue,js}",
   ],
   theme: {
     extend: {},

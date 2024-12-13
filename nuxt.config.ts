@@ -6,7 +6,10 @@ export default defineNuxtConfig({
   },
 
   // Required modules
-  modules: ["@nuxtjs/tailwindcss"],
+  modules: [
+    "@nuxtjs/tailwindcss",
+    ["@storyblok/nuxt", { accessToken: process.env.STORYBLOK_TOKEN }],
+  ],
 
   // Add Firebase configuration directly
   runtimeConfig: {
