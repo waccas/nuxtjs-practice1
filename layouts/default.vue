@@ -84,6 +84,13 @@
           >
             Contact
           </NuxtLink>
+          <NuxtLink
+            to="/blog/"
+            @click="toggleMobileMenu"
+            class="text-gray-800 hover:text-blue-600"
+          >
+            Our Blog
+          </NuxtLink>
         </nav>
       </div>
     </header>
